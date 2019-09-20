@@ -7,19 +7,14 @@
 </head>
 <body>
     <h1>Report for {{ student_name }}</h1>
-
-    {% for bundle_name in bundles %}
-     <h2>{{ bundle_name }}</h2>
-        <ul>
-            {% for key,value in bundles[bundle_name].iterrows() %}
-                  <li>
-                      {{ value['Assessment'] }}
-                      {% if value['Passed'] == True %}
-                        <b>Passed</b>
-                      {% endif %}
-                  </li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
+    <ul>
+          {% for value in achievements %}
+                <li>
+                    {{ value }}
+                      <b>{{ student_data.loc[student_data['Assessment'] == value].iloc[0]['Passed']}}</b>                    
+                </li>
+          {% endfor %}
+      </ul>
 </body>
 </html>
+
